@@ -1,0 +1,151 @@
+// Draw routines in Window platform
+//
+//////////////////////////////////////////////////////////////////////
+
+#include "stdafx.h"
+#include "enmark.h"
+
+
+void Light_Motor_On( char bOn )
+{
+}
+
+void Plate_Motor_On( char bOn )
+{
+}
+
+void ClearScreen( INT8U clr  )
+{
+	// do nothing in VC++
+//	InvalidateRect(0, NULL , 1);
+}
+
+void PutPixel( int x, int y, long clr )
+{
+	::SetPixel( gpDC, x, y,  clr );
+}
+
+void PutStrThin( int x, int y, char * str,  char bSel )
+{
+	::SelectObject( gpDC, &gFont4x6 );
+	if ( bSel )
+	{
+#if 1
+		// Derive a region from that path 
+		SelectClipPath(gpDC, RGN_AND); 
+		// This generates the same result as SelectClipPath() 
+		SelectClipRgn(gpDC, PathToRegion(gpDC)); 
+		// Fill the region with grayness 
+		RECT r; 
+		r.left = x-3; r.top=y;
+		r.right = x + strlen(str)*8;
+		r.bottom = y+20;
+		::FillRect(gpDC, &r, (HBRUSH)GetStockObject(BLACK_BRUSH)); 
+#endif
+		SetBkMode(gpDC, TRANSPARENT); 
+		// Bracket begin a path 
+		//BeginPath(gpDC); 
+		// Send some text out into the world 
+		COLORREF  aOldClr = ::SetTextColor( gpDC, RGB(255,255,255) );
+		::TextOut(gpDC, x,y, str, strlen(str) ); 
+		// Bracket end a path 
+		//EndPath(gpDC); 
+		::SetTextColor( gpDC, aOldClr);
+	}
+	else
+	{
+		::TextOut( gpDC, x, y+3,  str, strlen(str) );
+#if 0
+		if ( pos != (unsigned short)-1 )
+		{
+			char aBuf[2] = { 0 };
+			aBuf[0] = str[pos];
+			COLORREF  aOldClr = ::SetTextColor( gpDC, RGB(255,0,0) );
+			::TextOut(gpDC, x + pos*8, y+3, aBuf, 1 ); 
+			::SetTextColor( gpDC, aOldClr);
+		}
+#endif
+	}
+	
+}
+
+void PutStr( int x, int y, char * str,  char bSel )
+{
+	if ( !str )
+		return;
+	
+	::SelectObject( gpDC, &gFont8x16 );
+	if ( bSel )
+	{
+#if 1
+		// Derive a region from that path 
+		SelectClipPath(gpDC, RGN_AND); 
+		// This generates the same result as SelectClipPath() 
+		SelectClipRgn(gpDC, PathToRegion(gpDC)); 
+		// Fill the region with grayness 
+		RECT r; 
+		r.left = x-3; r.top=y;
+		r.right = x + strlen(str)*8;
+		r.bottom = y+20;
+		::FillRect(gpDC, &r, (HBRUSH)GetStockObject(BLACK_BRUSH)); 
+#endif
+		SetBkMode(gpDC, TRANSPARENT); 
+		// Bracket begin a path 
+		//BeginPath(gpDC); 
+		// Send some text out into the world 
+		COLORREF  aOldClr = ::SetTextColor( gpDC, RGB(255,255,255) );
+		::TextOut(gpDC, x,y, str, strlen(str) ); 
+		// Bracket end a path 
+		//EndPath(gpDC); 
+		::SetTextColor( gpDC, aOldClr);
+	}
+	else
+	{
+		::TextOut( gpDC, x, y+3,  str, strlen(str) );
+#if 0
+		if ( pos != (unsigned short)-1 )
+		{
+			char aBuf[2] = { 0 };
+			aBuf[0] = str[pos];
+			COLORREF  aOldClr = ::SetTextColor( gpDC, RGB(255,0,0) );
+			::TextOut(gpDC, x + pos*8, y+3, aBuf, 1 ); 
+			::SetTextColor( gpDC, aOldClr);
+		}
+#endif
+	}
+	
+}
+
+void PutBox( int x, int y, int w, int h )
+{
+#if 1
+RECT r; 
+r.left = x;
+r.top = y;
+r.right = x+w;
+r.bottom = y+h;
+::FillRect(gpDC, &r, (HBRUSH)GetStockObject(WHITE_BRUSH));
+#endif
+}
+
+void PutRect( int x, int y, int w, int h )
+{
+	::Rectangle( gpDC, x, y, x+w, y+h );
+}
+
+void PutLine( int x, int y, int x1, int y1 )
+{
+	::MoveToEx( gpDC, x, y ,0);
+	::LineTo( gpDC, x1, y1 );
+}
+
+void PutRectV( int x, int y, int w, int h, char bTrans )
+{
+	::Rectangle( gpDC, x, y, x+w, y+h );	
+}
+
+void PutLineV( int x, int y, int x1, int y1 )
+{
+	::MoveToEx( gpDC, x, y ,0);
+	::LineTo( gpDC, x1, y1 );	
+}

@@ -1,0 +1,27 @@
+// EnmTester.cpp: implementation of the CEnmTester class.
+//
+//////////////////////////////////////////////////////////////////////
+
+#include "stdafx.h"
+#include "enmark.h"
+#include "EnmTester.h"
+
+#ifdef _DEBUG
+#undef THIS_FILE
+static char THIS_FILE[]=__FILE__;
+#define new DEBUG_NEW
+#endif
+
+//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
+
+CEnmTester::CEnmTester()
+{
+
+}
+
+CEnmTester::~CEnmTester()
+{
+
+}
