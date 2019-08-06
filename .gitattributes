@@ -1,2 +1,1 @@
-*.* linguist-language=objective-c
-*.c linguist-language=objective-c
+*.* linguist-language=C++
