@@ -28,7 +28,9 @@ step 3. Donwload it to the board and run it.
 * Visual Studio 6.0 for the simulator
 
 ## System architecture
-This is a event-drive system proving near real-time functionality. it is a bit close to microsoft window OS with UI, and file system (similar to FAT).
+This is a event-drive system proving near real-time functionality. it is a bit close to microsoft window OS with UI, and file system (similar to FAT). The structure is like,
+
+![](https://github.com/Borrk/Enzyme-labeled-instrument/raw/master/doc/System-Architecture.png)
 
 ## Contributing
 
